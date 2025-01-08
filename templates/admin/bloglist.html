@@ -1,0 +1,43 @@
+
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+    {% for message in messages %}
+    <h6 class="{{ message.tags }}">{{ message }}</h6>
+    {% endfor %}
+
+
+<div class="container">
+
+            <div class="row">
+                 {% for post in posts %}
+
+                <div class="col-lg-3 col-md-6 col-sm-12 position-relative">
+
+                    <img class="categories__item set-bg" src="{{ post.image.url }}">
+
+                        <div class="categories__hover__text text-center">
+
+                            <h5 class="mt-1">{{ post.title }}</h5>
+                            <p>By {{ post.author }}</p>
+                            <a href="{% url 'admin_postview' post.id %}" class="btn btn-success read-more-btn">Read More</a>
+                        </div>
+                </div>
+                  {% endfor %}
+
+
+                 </div>
+        </div>
+
+
+
+{% endblock %}
+
+
+
+
+
+

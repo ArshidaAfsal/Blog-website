@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="description" content="Foodeiblog Template">
+    <meta name="keywords" content="Foodeiblog, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foodeiblog</title>
+
+ <style>
+
+/* Ensure images have a fixed size */
+.categories__item {
+    width: 100%;
+    height: 250px; /* Uniform height */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Scale the image on hover */
+.position-relative:hover .categories__item {
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+
+/* Center hover content */
+.categories_hover_text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+    color: white;
+}
+
+/* Show hover content on hover */
+.position-relative:hover .categories_hover_text {
+    opacity: 1;
+}
+
+/* Button styling */
+.read-more-btn {
+    margin-top: 5px; /* Space above the button */
+    padding: 8px 16px;
+    color: white;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.read-more-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Add margin between posts */
+.col-lg-3, .col-md-6, .col-sm-12 {
+    margin-bottom: 20px; /* Space between posts */
+}
+
+ </style>
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'user/assets/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/style.css' %}" type="text/css">
+</head>
+<body>
+
+<div>
+    {% include 'blog/navbar.html' %}
+</div>
+
+
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+
+
+
+{% include 'blog/footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

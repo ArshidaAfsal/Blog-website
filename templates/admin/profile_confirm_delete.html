@@ -1,0 +1,21 @@
+{% extends 'blog/navbar.html' %}
+
+{% block title %}Delete Profile Confirmation{% endblock %}
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <h2>Are you sure you want to delete the profile of <strong>{{ profile.username }}</strong>?</h2>
+        <p>This will delete the user's account and all associated data.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'admin_bloglist' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}}

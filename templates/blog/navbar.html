@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="description" content="Foodeiblog Template">
+    <meta name="keywords" content="Foodeiblog, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foodeiblog</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'user/assets/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'user/assets/css/style.css' %}" type="text/css">
+</head>
+<body>
+
+<!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+
+    <!-- Humberger Begin -->
+<div class="humberger__menu__overlay">
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="./index.html"><img src="{% static 'user/assets/img/humberger/humberger-logo.png' %}" alt=""></a>
+        </div>
+        <div>
+
+
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="{% url 'bloglist' %}">Home</a></li>
+
+                <li class="dropdown"><a href="#">Pages</a>
+                    <ul class="dropdown__menu">
+                        <li><a href="./categories-grid.html">Sign Up</a></li>
+                        <li><a href="./categories-list.html">Sign In</a></li>
+                        <li><a href="./single-post.html">Sign Out</a></li>
+                    </ul>
+                </li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+            </div>
+    </div>
+    </div>
+
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                        <div class="header__humberger">
+                            <i class="fa fa-bars humberger__open"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="active"><a href="{% url 'bloglist' %}">Home</a></li>
+
+                                {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                <li class=""><a href="/admin/">Admin Dashboard</a></li>
+                                {% else %}
+                                <li class=""><a href="{% url 'profileview' request.user.profileuser.pk %}">Profile</a></li>
+                                {% endif %}
+                                {% else %}
+                                <li class=""><a href="{% url 'bloglist' %}">Blog</a></li>
+                                {% endif %}
+
+
+
+
+
+
+                                </li>
+
+                                <li class="dropdown"><a href="#">Pages</a>
+                                    <ul class="dropdown__menu">
+                                        <li><a href="{% url 'register' %}">Sign Up</a></li>
+                                        <li><a href="{% url 'login' %}">Sign In</a></li>
+                                        <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'logout' %}">Signout</a></li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                        <div class="header__search">
+                            <i class="fa fa-search search-switch"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__btn">
+                        <a href="{% url 'create_post' %}" class="primary-btn">Add Post</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="{% static 'user/assets/img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-envelope-o"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Section End -->
+    <!-- Js Plugins -->
+    <script src="{% static 'user/assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'user/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'user/assets/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'user/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'user/assets/js/main.js' %}"></script>
+
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

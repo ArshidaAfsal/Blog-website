@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Detail View</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 1200px;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .content {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .content img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .content h1 {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .author-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid #ddd;
+    }
+
+    .author-info .meta {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .comments {
+      flex: 1;
+      background: #f4f4f4;
+      padding: 20px;
+      border-left: 1px solid #ddd;
+    }
+
+    .comments h3 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .comment-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .comment-item img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid #ddd;
+    }
+
+    .comments p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .comments .author {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .comment-box {
+      margin-top: 20px;
+    }
+
+    .comment-box input,
+    .comment-box button {
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    .comment-box button {
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .comment-box button:hover {
+      background: #555;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Post Content -->
+    <div class="content">
+      <!-- Post Image -->
+      {% if post.image %}
+      <img src="{{ post.image.url }}" alt="Gourmet Appetizer">
+      {% endif %}
+
+      <!-- Post Title -->
+      <h1>{{post.title}}</h1>
+
+      <!-- Author Info -->
+      <div class="author-info">
+
+      {% if post.author.profileuser.profile_pic %}
+      <img src="{{ post.author.profileuser.profile_pic.url }}" alt="Author's Image">
+      {% else %}
+      <p>No profile picture available.</p>
+      {% endif %}
+
+        <div class="meta">
+          <p class="meta">By {{ post.author.username }} | {{ post.date_posted }} </p>
+        </div>
+      </div>
+
+      <!-- Post Content -->
+      <p>
+        {{ post.content }}
+      </p>
+    </div>
+
+
+
+<!-------------------    Comment section     -------------->
+
+     <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex flex-start">
+
+              <div class="w-100">
+                <div class="d-flex justify-content-between mb-3">
+                  {% for comment in post.comment_set.all %}
+                  <div class="comment-box">
+                    {% if comment.author.profileuser.profile_pic %}
+                     <img class="rounded-circle shadow-1-strong me-3" src="{{ comment.author.profileuser.profile_pic.url }}" alt="Author's Image" width="40" height="40">
+                       {% else %}
+                     <p>No profile picture available.</p>
+                     {% endif %}
+
+                  <h6 class="text-primary fw-bold mb-0">
+                    {{ comment.author.username }}:
+                    <span class="text-body ms-2">{{ comment.comments }}</span>
+                    <p class="mb-0">{{ comment.created_at }}</p>
+
+
+                  </h6>
+                  {% empty %}
+                  <p>No comments yet. Be the first to comment!</p>
+                 {% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-between ">
+                  <form method="post">
+                    <a href="{% url 'add_comment' post.id %}" class="btn btn-primary">Add Comments</a>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-30">Save</button>
+
+
+                  <div class="d-flex flex-row">
+                    <i class="fas fa-star text-warning me-2"></i>
+                    <i class="far fa-check-circle" style="color: #aaa;"></i>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
