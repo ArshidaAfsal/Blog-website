@@ -1,6 +1,5 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm,LoginForm,ProfileForm,PostForm,CommentForm
 from .models import ProfileUser,Post,Comment
@@ -108,7 +107,7 @@ def UpdateProfile(request,pk):
 
 def index(request):
 
-    return render(request,"blog/base.html")
+    return render(request,"blog/index.html")
 
 
 

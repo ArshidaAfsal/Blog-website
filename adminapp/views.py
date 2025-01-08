@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from pyexpat.errors import messages
-
 from blogapp.models import ProfileUser,Post,Comment
 from blogapp.forms import PostForm,CommentForm
 from django.core.mail import send_mail
